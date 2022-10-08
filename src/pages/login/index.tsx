@@ -1,47 +1,40 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { Formik } from "formik";
 import { toast } from "react-toastify";
+import { coachLoginSchema } from "../../utils/helpers/validations/login/coach";
+import { useNavigate } from "react-router-dom";
 import AuthLayout from "../../layouts/Auth";
 import LayoutCard from "../../components/Card/LayoutCard";
 import BackButton from "../../components/Buttons/BackButton";
-import Email from "../../components/Input/Email";
-import Password from "../../components/Input/Password";
+import Text from "../../components/Input/Text";
 import Button from "../../components/Buttons/Button";
+import axios from "../../utils/axios";
 import "./styles.scss";
 
 const Login = (): JSX.Element => {
   const history = useNavigate();
-  const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const { userInfo } = useSelector((state: any) => state.user);
-
-  useEffect(() => {
-    setTimeout(() => {
-      if (userInfo) {
-        toast.success(userInfo?.message, {
-          position: toast.POSITION.TOP_RIGHT,
-        });
-
-        history("/coach");
-      }
-    }, 1000);
-  }, [history, userInfo]);
-
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    const loginCredintial = {
-      email,
-      password,
-    };
-    console.log(loginCredintial);
-    setEmail("");
-    setPassword("");
-  };
-
+  const [loginDetails] = useState({ email: "", password: "" });
+  const [loading, setLoading] = useState(false);
   const handleNavigateBack = (): void => history(-1);
+  const handleLoginCoach = async (values: {
+    email: string;
+    password: string;
+  }): Promise<void> => {
+    setLoading(true);
+    try {
+      const res = await axios.post("/auth/coach/login", { ...values });
+      toast.success(res.data.message);
+      console.log(res);
+      localStorage.setItem("authUser", res.data.result.token);
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 2000);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+    }
+  };
   return (
     <div>
       <div>
@@ -56,40 +49,82 @@ const Login = (): JSX.Element => {
                   Account
                 </p>
                 <div className="mt-10 form-container">
-                  <div>
-                    <p className="mb-3">Email Address</p>
-                    <Email
-                      type="text"
-                      placeholder="Enter email adress"
-                      value={email}
-                      onChange={(e: any) => setEmail(e.target.value)}
-                    />
-                  </div>
-                  <div className="mt-7">
-                    <p className="mb-3">Password</p>
-                    <Password
-                      type="password"
-                      placeholder="Password"
-                      value={password}
-                      onChange={(e: any) => setPassword(e.target.value)}
-                    />
-                  </div>
-                  <div>
-                    <button type="submit" className="float-right mt-5">
-                      Forgot Password?
-                    </button>
-                  </div>
-                  <div className="flex justify-center mt-28">
-                    <Button
-                      label="Log in"
-                      customedClasses="py-5 px-28"
-                      onClick={handleSubmit}
-                    />
-                  </div>
+                  <Formik
+                    validationSchema={coachLoginSchema}
+                    validateOnChange
+                    validateOnBlur
+                    initialValues={loginDetails}
+                    onSubmit={handleLoginCoach}
+                  >
+                    {({
+                      values,
+                      errors,
+                      touched,
+                      handleChange,
+                      handleSubmit,
+                      isValid,
+                      setFieldValue,
+                      resetForm,
+                    }) => (
+                      <div>
+                        <form onSubmit={handleSubmit}>
+                          <div>
+                            <div>
+                              <p className="mb-3">Email Address</p>
+                              <Text
+                                type="text"
+                                placeholder="Enter email adress"
+                                value={values.email}
+                                onChange={handleChange}
+                                name="email"
+                              />
+                              <p className="text-[red] mt-3 text-sm">
+                                {errors.email && touched.email && errors.email}
+                              </p>
+                            </div>
+                            <div className="mt-7">
+                              <p className="mb-3">Password</p>
+                              <Text
+                                type="password"
+                                placeholder="Password"
+                                value={values.password}
+                                onChange={handleChange}
+                                name="password"
+                              />
+                              <p className="text-[red] mt-3 text-sm">
+                                {errors.password &&
+                                  touched.password &&
+                                  errors.password}
+                              </p>
+                            </div>
+                            <div>
+                              <button
+                                type="submit"
+                                className="float-right mt-5"
+                              >
+                                Forgot Password?
+                              </button>
+                            </div>
+                            <div className="flex justify-center mt-28">
+                              <Button
+                                label="Log in"
+                                customedClasses="py-5 px-28"
+                                loading={loading}
+                              />
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    )}
+                  </Formik>
+
                   <div className="flex justify-center mt-14">
                     <p>
                       Don't have an Account?{" "}
-                      <span className="text-red-700 cursor-pointer">
+                      <span
+                        onClick={() => history("/sign-up/coach")}
+                        className="text-red-700 cursor-pointer hover:underline"
+                      >
                         Sign Up
                       </span>{" "}
                       here

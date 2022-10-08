@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "../../layouts/Auth";
 import LayoutCard from "../../components/Card/LayoutCard";
@@ -9,6 +9,7 @@ import PhaseThree from "./signup-as-coach-components/PhaseThree";
 import PhaseFour from "./signup-as-coach-components/PhaseFour";
 import Step from "../../components/step";
 import axios from "../../utils/axios";
+import { toast } from "react-toastify";
 import "./styles.scss";
 
 const Coach = () => {
@@ -17,6 +18,7 @@ const Coach = () => {
   const [fileOne, setFileOne] = useState<any>(null);
   const [fileTwo, setFileTwo] = useState<any>(null);
   const [fileThree, setFileThree] = useState<any>(null);
+  const [loading, setLoading] = useState<any>(null);
 
   const [coachData, setCoachData] = useState({
     firstname: "",
@@ -50,8 +52,9 @@ const Coach = () => {
   const handleSetCoachData = (res: any) => setCoachData(res);
 
   const handleSubmitCoachData = async () => {
+    setLoading(true);
     try {
-      const formData = new FormData();
+      const formData: FormData = new FormData();
       formData.append("firstname", coachData.firstname);
       formData.append("surname", coachData.surname);
       formData.append("dob", coachData.dob);
@@ -68,14 +71,21 @@ const Coach = () => {
       formData.append("image", fileTwo);
       formData.append("image", fileThree);
 
-      const res = await axios({
+      const res: any = await axios({
         method: "post",
         url: "/auth/coach/register",
         data: formData,
       });
 
-      console.log(res);
-    } catch (error) {}
+      setLoading(false);
+
+      toast.success(res.data.message);
+      setTimeout(() => {
+        window.location.href = "/coach/login";
+      }, 2000);
+    } catch (error) {
+      setLoading(false);
+    }
   };
 
   return (
@@ -83,7 +93,9 @@ const Coach = () => {
       <AuthLayout>
         <div>
           <LayoutCard>
-            <BackButton onClick={handlePrevStep} />
+            <div className="pl-8 sm:pl-8 md:pl-8 lg:pl-0 xl:pl-0">
+              <BackButton onClick={handlePrevStep} />
+            </div>
             <div className="mt-1">
               <div className="px-10">
                 <p className="signup">Sign Up as a Coach</p>
@@ -147,6 +159,7 @@ const Coach = () => {
                       handleSetFileTwo={handleSetFileTwo}
                       handleSetFileThree={handleSetFileThree}
                       handleSubmitCoachData={handleSubmitCoachData}
+                      loading={loading}
                     />
                   )}
                 </div>

@@ -11,10 +11,11 @@ const Button = ({
   loading?: boolean;
   type?: any;
   customedClasses?: string;
-  onClick?: any;
+  onClick?: (e: any) => void;
 }): JSX.Element => {
   return (
     <button
+      onClick={onClick}
       type={type}
       disabled={loading}
       className={

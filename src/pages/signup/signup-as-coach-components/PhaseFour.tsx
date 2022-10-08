@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import Uploader from "../../../components/Input/Uploader";
 import Button from "../../../components/Buttons/Button";
 import "../styles.scss";
@@ -8,11 +8,13 @@ const PhaseFour = ({
   handleSetFileTwo,
   handleSetFileThree,
   handleSubmitCoachData,
+  loading,
 }: {
   handleSetFileOne: (event: void) => void;
   handleSetFileTwo: (event: void) => void;
   handleSetFileThree: (event: void) => void;
   handleSubmitCoachData: (event: void) => void;
+  loading: boolean;
 }): JSX.Element => {
   const fileOneRef = useRef<any>(null);
   const fileTwoRef = useRef<any>(null);
@@ -38,7 +40,7 @@ const PhaseFour = ({
     <div>
       <p className="reg-label mb-2">Licenses/Certificates (Image)</p>
       <div className="mt-1">
-        <img ref={fileOneRef} className="w-full mb-5" />
+        <img ref={fileOneRef} alt="file-one" className="w-full mb-5" />
         <Uploader
           type="file"
           placeholder="Upload file"
@@ -48,7 +50,7 @@ const PhaseFour = ({
       </div>
       <p className="reg-label mb-2 mt-8">Diploma Certificate (Image)</p>
       <div className="mt-1">
-        <img ref={fileTwoRef} className="w-full mb-5" />
+        <img ref={fileTwoRef} alt="file-two" className="w-full mb-5" />
         <Uploader
           type="file"
           placeholder="Upload file"
@@ -60,7 +62,7 @@ const PhaseFour = ({
         Other Trainings & Certifications (Image)
       </p>
       <div className="mt-1">
-        <img ref={fileThreeRef} className="w-full mb-5" />
+        <img ref={fileThreeRef} alt="file-three" className="w-full mb-5" />
         <Uploader
           type="file"
           placeholder="Upload file"
@@ -78,7 +80,7 @@ const PhaseFour = ({
           onClick={handleSubmitCoachData}
           label="Complete Registration"
           customedClasses="py-5 px-20"
-          loading={false}
+          loading={loading}
         />
       </div>
     </div>

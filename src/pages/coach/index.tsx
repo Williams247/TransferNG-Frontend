@@ -70,6 +70,7 @@ const Coach = (): JSX.Element => {
                 <img
                   className="w-full rounded-2xl"
                   src={require("../../static/images/coach.jpg")}
+                  alt="Coach"
                 />
               </div>
               <div className="w-[63%]">
@@ -233,6 +234,7 @@ const Coach = (): JSX.Element => {
                       <img
                         src={require("../../static/images/coach.jpg")}
                         className="w-full rounded-2xl"
+                        alt="video"
                       />
                       <div className="mt-5">
                         <p className="plus-jakarta text-[20px] leading-[169.5%] font-[400] text-white">

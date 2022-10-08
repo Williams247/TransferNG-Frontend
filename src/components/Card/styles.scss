@@ -1,11 +1,12 @@
 @import "../../styles/variables.scss";
 
 .display-card {
-  background: radial-gradient(158.47% 95.91% at -49.58% 15.24%,
+  background: radial-gradient(
+      158.47% 95.91% at -49.58% 15.24%,
       rgba(255, 255, 255, 0.082) 0%,
-      rgba(255, 255, 255, 0.082) 100%)
-    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
-  ;
+      rgba(255, 255, 255, 0.082) 100%
+    )
+    /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
   box-shadow: inset -3.46337px -3.46337px 173.168px rgba(255, 255, 255, 0.02),
     inset 3.46337px 3.46337px 2.77069px rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(29.0923px);
@@ -53,18 +54,24 @@
 .layout-card {
   border-radius: 20px;
   background: white;
-
+  padding-top: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
   @media (min-width: $general-break-point) {
     padding-left: 50px;
     padding-right: 50px;
-    padding-top: 50px;
-    padding-right: 50px;
+    padding-bottom: 50px;
   }
 }
 
 .transparent-card {
-  background: radial-gradient(158.47% 95.91% at -49.58% 15.24%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
-  box-shadow: inset -3.46337px -3.46337px 173.168px rgba(255, 255, 255, 0.02), inset 3.46337px 3.46337px 2.77069px rgba(255, 255, 255, 0.1);
+  background: radial-gradient(
+    158.47% 95.91% at -49.58% 15.24%,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  box-shadow: inset -3.46337px -3.46337px 173.168px rgba(255, 255, 255, 0.02),
+    inset 3.46337px 3.46337px 2.77069px rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(29.0923px);
   border-radius: 8px;
   width: 100% !important;

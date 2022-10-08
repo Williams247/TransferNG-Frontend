@@ -11,14 +11,13 @@ export const axiosSkeleton = Axios.create({
   headers: {},
 });
 
+const token = localStorage.getItem("authUser") || "{}";
+
 const axiosConfiguration = (config: AxiosRequestConfig) => {
-  const token = JSON.parse(
-    localStorage.getItem("authUser") || "{}"
-  ).accessToken;
   if (token)
     config.headers = {
       ...(config.headers || {}),
-      Authorization: token,
+      Authorization: `Bearer ${token}`,
     };
   return config;
 };
@@ -36,7 +35,7 @@ axios.interceptors.response.use(
 
     const res = error.response;
 
-    if (res.status === 401) {
+    if (res.status === 401 && token) {
       window.location.href = "/login";
       localStorage.clear();
       return;

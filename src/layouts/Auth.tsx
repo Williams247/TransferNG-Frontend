@@ -4,8 +4,10 @@ const Auth = ({ children }: { children: JSX.Element }): JSX.Element => {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <div>
-      <div className="auth-layout py-20">{children}</div>
+    <div className="auth-layout">
+      <div className="py-20 px-10 sm:px-10 md:container lg:container xl:container">
+        {children}
+      </div>
     </div>
   );
 };

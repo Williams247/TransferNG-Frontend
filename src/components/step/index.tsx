@@ -3,7 +3,7 @@ import "./styles.scss";
 
 const Step = ({ info }: any): JSX.Element => {
   return (
-    <div className="flex">
+    <div className="hidden sm:hidden md:hidden lg:flex xl:flex">
       {info.map((data: any, index: any) => {
         return (
           <div className="flex" key={index}>

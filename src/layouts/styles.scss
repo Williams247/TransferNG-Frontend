@@ -36,7 +36,7 @@
 }
 
 .general-layout {
-  background: #05182A;
+  background: #05182a;
 }
 
 .auth-layout {
@@ -44,8 +44,4 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  @media (min-width: $general-break-point) {
-    padding-left: 230px;
-    padding-right: 230px;
-  }
 }
