@@ -1,0 +1,15 @@
+.search-bar {
+  background: radial-gradient(
+    158.47% 95.91% at -49.58% 15.24%,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  box-shadow: inset -3.46337px -3.46337px 173.168px rgba(255, 255, 255, 0.02),
+    inset 3.46337px 3.46337px 2.77069px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14.5461px);
+  border-radius: 8px;
+  border: 0.6px solid white;
+  input {
+    outline: none !important;
+  }
+}
