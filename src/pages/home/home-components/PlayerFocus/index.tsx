@@ -1,5 +1,4 @@
-// @ts-ignore
-import Space from "../../../../components/Space/index.tsx";
+import Space from "../../../../components/Space";
 import "./styles.scss";
 
 const PlayerFocus = (): JSX.Element => {
@@ -12,7 +11,10 @@ const PlayerFocus = (): JSX.Element => {
               <p id="player-focus-text" className="yeseva-one">
                 Player Focus
               </p>
-              <div id="player-focus-card" className="mt-28 px-8">
+              <div
+                id="player-focus-card"
+                className="mt-28 px-8 w-full sm:w-full md:w-full lg:w-[400px] xl:w-[400px]"
+              >
                 <div>
                   <p id="player-name" className="plus-jakarta mt-7">
                     Christiano Ronaldo
@@ -50,14 +52,17 @@ const PlayerFocus = (): JSX.Element => {
                 </div>
               </div>
             </div>
-            <div id="second-pane-layer-2" className="px-10">
-              {/* <img
+            <div
+              id="second-pane-layer-2"
+              className="px-10 hidden sm:hidden md:hidden lg:inline xl:inline"
+            >
+              <img
                 id="cr7"
                 className="float-right"
                 src={require("../../../../static/images/cr7.png")}
                 alt="cr7"
                 style={{ float: "right" }}
-              /> */}
+              />
             </div>
           </div>
         </Space>

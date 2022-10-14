@@ -25,7 +25,7 @@ const DisplayCard = ({
   return (
     <div>
       {cardType === "first-card" && (
-        <div className="display-card">
+        <div className="display-card w-full">
           <img
             className="w-full display-card-image"
             alt={productName}

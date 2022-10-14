@@ -15,14 +15,19 @@ const ShopPage = (): JSX.Element => {
             <PageHeading title="Shop" />
           </div>
           <div className="mt-10">
-            <p className="plus-jakarta subject font-bold">Jersey</p>
+            <p className="plus-jakarta subject font-bold mb-10">Jersey</p>
             <div className="w-full">
-              <div className="flex flex-wrap justify-center">
+              <div
+                className={`flex flex-col sm:flex-col
+              md:flex-col lg:flex-row xl:flex-row
+              flex-wrap justify-evenly
+              `}
+              >
                 {jersey.map((data, index) => {
                   return (
                     <div
                       key={index}
-                      className="display-card-container px-5 mt-10"
+                      className="w-full sm:w-full md:w-full lg:w-[31%] xl:w-[31%] mt-5"
                     >
                       <DisplayCard
                         imageUrl={data.imageUrl}

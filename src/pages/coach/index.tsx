@@ -56,24 +56,24 @@ const Coach = (): JSX.Element => {
     <div>
       <GeneralLayout>
         <div>
-          <div className="flex justify-between">
+          <div className="flex justify-between flex-col sm:flex-col md:flex-col lg:flex-row xl:flex-row">
             <div className="w-[65%]">
               <SearchBar />
             </div>
-            <div>
+            <div className="mt-6 sm:mt-6 md:mt-6 lg:mt-0 xl:mt-0">
               <Button label="Send Message" />
             </div>
           </div>
           <div className="mt-14">
-            <div className="flex justify-between">
-              <div className="w-[33%]">
+            <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row xl:flex-row justify-between">
+              <div className="w-full sm:w-full md:w-full lg:w-[33%] xl:w-[33%]">
                 <img
                   className="w-full rounded-2xl"
                   src={require("../../static/images/coach.jpg")}
                   alt="Coach"
                 />
               </div>
-              <div className="w-[63%]">
+              <div className="w-full sm:w-full md:w-full lg:w-[63%] xl:w-[63%] mt-10 sm:mt-10 md:mt-10 lg:mt-0 xl:mt-0">
                 <TransparentCard>
                   <div>
                     <p className="spantaran text-[30px] leading-[169.5%] font-[400] text-white">
@@ -97,8 +97,8 @@ const Coach = (): JSX.Element => {
             </div>
           </div>
           <div className="mt-5">
-            <div className="flex justify-between">
-              <div className="w-[33%]">
+            <div className="flex flex-col sm:flex-col md:flex-col lg:flex-row xl:flex-row justify-between">
+              <div className="w-full sm:w-full md:w-full lg:w-[33%] xl:w-[33%]">
                 <p className="spantaran text-[30px] leading-[169.5%] font-[400] text-white mt-4">
                   Pep Guardiola
                 </p>
@@ -175,10 +175,10 @@ const Coach = (): JSX.Element => {
                   </div>
                 </div>
               </div>
-              <div className="w-[63%] pt-5">
+              <div className="w-full sm:w-full md:w-full lg:w-[63%] xl:w-[63%] pt-5">
                 <div className="flex justify-between">
                   <div className="w-[48%] h-[376px]">
-                    <TransparentCard className="h-[376px]">
+                    <TransparentCard className="h-[376px] overflow-y-auto">
                       <div>
                         <p className="spantaran text-[30px] leading-[169.5%] font-[400] text-white">
                           Awards
@@ -200,7 +200,7 @@ const Coach = (): JSX.Element => {
                     </TransparentCard>
                   </div>
                   <div className="w-[48%]">
-                    <TransparentCard className="h-[376px]">
+                    <TransparentCard className="h-[376px] overflow-y-auto">
                       <div>
                         <p className="spantaran text-[30px] leading-[169.5%] font-[400] text-white">
                           Season Stats
@@ -230,7 +230,7 @@ const Coach = (): JSX.Element => {
               <div className="flex w-full flex-row flex-wrap justify-between">
                 {vidoes.map((i, index) => {
                   return (
-                    <div className="w-[31.5%] mt-7">
+                    <div className="w-full sm:w-full md:w-[48%] lg:w-[31.5%] xl:w-[31.5%] mt-7">
                       <img
                         src={require("../../static/images/coach.jpg")}
                         className="w-full rounded-2xl"

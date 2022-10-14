@@ -1,4 +1,4 @@
-const LayoutCard = ({ children }: any) => {
+const LayoutCard = ({ children }: { children: JSX.Element }) => {
   return (
     <div>
       <div className="layout-card">{children}</div>

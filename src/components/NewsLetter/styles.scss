@@ -1,10 +1,16 @@
 .news-letter-container {
-  width: 68%;
+  width: 100%;
   background: white;
   border-radius: 50px;
+  @media (min-width: 1000px) {
+    width: 68%;
+  }
   form {
     .input-container {
-      width: 70% !important;
+      width: 100% !important;
+      @media (min-width: 1000px) {
+        width: 70% !important;
+      }
       input[type="email"] {
         &:focus {
           outline: none;

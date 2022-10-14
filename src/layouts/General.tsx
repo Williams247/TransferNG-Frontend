@@ -5,7 +5,7 @@ import Space from "../components/Space";
 
 import "./styles.scss";
 
-const General = ({ children }: any): JSX.Element => {
+const General = ({ children }: { children: JSX.Element }): JSX.Element => {
   useEffect((): void => {
     window.scrollTo(0, 0);
   }, []);
@@ -14,7 +14,9 @@ const General = ({ children }: any): JSX.Element => {
       <Navigation />
       <div className="pb-16">
         <Space>
-          <div className="pt-36">{children}</div>
+          <div className="pt-10 sm:pt-10 md:pt-10 lg:pt-36 xl:pt-36">
+            {children}
+          </div>
         </Space>
       </div>
       <div>

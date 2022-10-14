@@ -93,75 +93,77 @@ const Coach = () => {
       <AuthLayout>
         <div>
           <LayoutCard>
-            <div className="pl-8 sm:pl-8 md:pl-8 lg:pl-0 xl:pl-0">
-              <BackButton onClick={handlePrevStep} />
-            </div>
-            <div className="mt-1">
-              <div className="px-10">
-                <p className="signup">Sign Up as a Coach</p>
-                <p className="text-center text-xl mt-4">
-                  Sign Up as a Coach, connect with great Talents
-                </p>
-                <div className="mt-10 flex justify-center">
-                  <Step
-                    info={[
-                      {
-                        active: phase === 1 ? true : false,
-                        done: phase > 1 ? true : false,
-                        value: 1,
-                        label: "Personal Data",
-                      },
-                      {
-                        active: phase === 2 ? true : false,
-                        done: phase > 2 ? true : false,
-                        value: 2,
-                        label: "Job History",
-                      },
-                      {
-                        active: phase === 3 ? true : false,
-                        done: phase > 3 ? true : false,
-                        value: 3,
-                        label: "Contact Information",
-                      },
-                      {
-                        active: phase === 4 ? true : false,
-                        done: isDone,
-                        value: 4,
-                        label: "Personal Information",
-                      },
-                    ]}
-                  />
-                </div>
-                <div className="mt-10">
-                  {phase === 1 && (
-                    <PhaseOne
-                      handleSetCoachData={handleSetCoachData}
-                      handleNextStep={handleNextStep}
+            <div>
+              <div className="pl-8 sm:pl-8 md:pl-8 lg:pl-0 xl:pl-0">
+                <BackButton onClick={handlePrevStep} />
+              </div>
+              <div className="mt-1">
+                <div className="px-10">
+                  <p className="signup">Sign Up as a Coach</p>
+                  <p className="text-center text-xl mt-4">
+                    Sign Up as a Coach, connect with great Talents
+                  </p>
+                  <div className="mt-10 flex justify-center">
+                    <Step
+                      info={[
+                        {
+                          active: phase === 1 ? true : false,
+                          done: phase > 1 ? true : false,
+                          value: 1,
+                          label: "Personal Data",
+                        },
+                        {
+                          active: phase === 2 ? true : false,
+                          done: phase > 2 ? true : false,
+                          value: 2,
+                          label: "Job History",
+                        },
+                        {
+                          active: phase === 3 ? true : false,
+                          done: phase > 3 ? true : false,
+                          value: 3,
+                          label: "Contact Information",
+                        },
+                        {
+                          active: phase === 4 ? true : false,
+                          done: isDone,
+                          value: 4,
+                          label: "Personal Information",
+                        },
+                      ]}
                     />
-                  )}
-                  {phase === 2 && (
-                    <PhaseTwo
-                      coachData={coachData}
-                      handleSetCoachData={handleSetCoachData}
-                      handleNextStep={handleNextStep}
-                    />
-                  )}
-                  {phase === 3 && (
-                    <PhaseThree
-                      coachData={coachData}
-                      handleSetCoachData={handleSetCoachData}
-                      handleNextStep={handleNextStep}
-                    />
-                  )}
-                  {phase === 4 && (
-                    <PhaseFour
-                      handleSetFileOne={handleSetFileOne}
-                      handleSetFileTwo={handleSetFileTwo}
-                      handleSetFileThree={handleSetFileThree}
-                      handleSubmitCoachData={handleSubmitCoachData}
-                      loading={loading}
-                    />
-                  )}
+                  </div>
+                  <div className="mt-10">
+                    {phase === 1 && (
+                      <PhaseOne
+                        handleSetCoachData={handleSetCoachData}
+                        handleNextStep={handleNextStep}
+                      />
+                    )}
+                    {phase === 2 && (
+                      <PhaseTwo
+                        coachData={coachData}
+                        handleSetCoachData={handleSetCoachData}
+                        handleNextStep={handleNextStep}
+                      />
+                    )}
+                    {phase === 3 && (
+                      <PhaseThree
+                        coachData={coachData}
+                        handleSetCoachData={handleSetCoachData}
+                        handleNextStep={handleNextStep}
+                      />
+                    )}
+                    {phase === 4 && (
+                      <PhaseFour
+                        handleSetFileOne={handleSetFileOne}
+                        handleSetFileTwo={handleSetFileTwo}
+                        handleSetFileThree={handleSetFileThree}
+                        handleSubmitCoachData={handleSubmitCoachData}
+                        loading={loading}
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

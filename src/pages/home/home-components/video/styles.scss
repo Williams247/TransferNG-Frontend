@@ -1,7 +1,9 @@
 #video-container {
   #main-video-container {
-    padding-left: 150px;
-    padding-right: 150px;
+    @media (min-width: 1000px) {
+      padding-left: 150px;
+      padding-right: 150px;
+    }
     #blue-box {
       background: #0757a0;
     }

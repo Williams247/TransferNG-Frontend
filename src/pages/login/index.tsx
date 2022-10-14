@@ -41,94 +41,98 @@ const Login = (): JSX.Element => {
         <AuthLayout>
           <div>
             <LayoutCard>
-              <BackButton onClick={handleNavigateBack} />
-              <div className="pb-10">
-                <p id="login" className="mt-5">
-                  Log In to your
-                  <br />
-                  Account
-                </p>
-                <div className="mt-10 form-container">
-                  <Formik
-                    validationSchema={coachLoginSchema}
-                    validateOnChange
-                    validateOnBlur
-                    initialValues={loginDetails}
-                    onSubmit={handleLoginCoach}
-                  >
-                    {({
-                      values,
-                      errors,
-                      touched,
-                      handleChange,
-                      handleSubmit,
-                      isValid,
-                      setFieldValue,
-                      resetForm,
-                    }) => (
-                      <div>
-                        <form onSubmit={handleSubmit}>
-                          <div>
+              <div>
+                <BackButton onClick={handleNavigateBack} />
+                <div className="pb-10">
+                  <p id="login" className="mt-5">
+                    Log In to your
+                    <br />
+                    Account
+                  </p>
+                  <div className="mt-10 form-container">
+                    <Formik
+                      validationSchema={coachLoginSchema}
+                      validateOnChange
+                      validateOnBlur
+                      initialValues={loginDetails}
+                      onSubmit={handleLoginCoach}
+                    >
+                      {({
+                        values,
+                        errors,
+                        touched,
+                        handleChange,
+                        handleSubmit,
+                        isValid,
+                        setFieldValue,
+                        resetForm,
+                      }) => (
+                        <div>
+                          <form onSubmit={handleSubmit}>
                             <div>
-                              <p className="mb-3">Email Address</p>
-                              <Text
-                                type="text"
-                                placeholder="Enter email adress"
-                                value={values.email}
-                                onChange={handleChange}
-                                name="email"
-                              />
-                              <p className="text-[red] mt-3 text-sm">
-                                {errors.email && touched.email && errors.email}
-                              </p>
+                              <div>
+                                <p className="mb-3">Email Address</p>
+                                <Text
+                                  type="text"
+                                  placeholder="Enter email adress"
+                                  value={values.email}
+                                  onChange={handleChange}
+                                  name="email"
+                                />
+                                <p className="text-[red] mt-3 text-sm">
+                                  {errors.email &&
+                                    touched.email &&
+                                    errors.email}
+                                </p>
+                              </div>
+                              <div className="mt-7">
+                                <p className="mb-3">Password</p>
+                                <Text
+                                  type="password"
+                                  placeholder="Password"
+                                  value={values.password}
+                                  onChange={handleChange}
+                                  name="password"
+                                />
+                                <p className="text-[red] mt-3 text-sm">
+                                  {errors.password &&
+                                    touched.password &&
+                                    errors.password}
+                                </p>
+                              </div>
+                              <div>
+                                <button
+                                  type="submit"
+                                  className="float-right mt-5"
+                                >
+                                  Forgot Password?
+                                </button>
+                              </div>
+                              <div className="flex justify-center mt-28">
+                                <Button
+                                  label="Log in"
+                                  customedClasses="py-5 px-28"
+                                  loading={loading}
+                                />
+                              </div>
                             </div>
-                            <div className="mt-7">
-                              <p className="mb-3">Password</p>
-                              <Text
-                                type="password"
-                                placeholder="Password"
-                                value={values.password}
-                                onChange={handleChange}
-                                name="password"
-                              />
-                              <p className="text-[red] mt-3 text-sm">
-                                {errors.password &&
-                                  touched.password &&
-                                  errors.password}
-                              </p>
-                            </div>
-                            <div>
-                              <button
-                                type="submit"
-                                className="float-right mt-5"
-                              >
-                                Forgot Password?
-                              </button>
-                            </div>
-                            <div className="flex justify-center mt-28">
-                              <Button
-                                label="Log in"
-                                customedClasses="py-5 px-28"
-                                loading={loading}
-                              />
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-                    )}
-                  </Formik>
+                          </form>
+                        </div>
+                      )}
+                    </Formik>
 
-                  <div className="flex justify-center mt-14">
-                    <p>
-                      Don't have an Account?{" "}
-                      <span
-                        onClick={() => history("/sign-up/coach")}
-                        className="text-red-700 cursor-pointer hover:underline"
-                      >
-                        Sign Up
-                      </span>{" "}
-                      here
-                    </p>
+                    <div className="flex justify-center mt-14">
+                      <p>
+                        Don't have an Account?{" "}
+                        <span
+                          onClick={() => history("/sign-up/coach")}
+                          className="text-red-700 cursor-pointer hover:underline"
+                        >
+                          Sign Up
+                        </span>{" "}
+                        here
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>

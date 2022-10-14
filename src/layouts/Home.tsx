@@ -6,7 +6,7 @@ import Button from "../components/Buttons/Button";
 import Footer from "../components/Footer";
 import "./styles.scss";
 
-const Home = ({ children }: any): JSX.Element => {
+const Home = ({ children }: { children: JSX.Element }): JSX.Element => {
   useEffect((): void => {
     window.scrollTo(0, 0);
   }, []);
@@ -19,7 +19,7 @@ const Home = ({ children }: any): JSX.Element => {
           <div>
             <div id="top-content-container">
               <div className="flex justify-center">
-                <div>
+                <div className="mt-[250px] sm:mt-[250px] md:mt-[200px] lg:mt-0 xl:mt-0">
                   <p
                     id="welcome-text"
                     className="text-white text-3xl font-bold plus-jakarta"
@@ -27,8 +27,12 @@ const Home = ({ children }: any): JSX.Element => {
                     Welcome to
                   </p>
                   <p
-                    id="transferhubng"
-                    className="text-white text-9xl text-center spantaran"
+                    className={`
+                    text-white text-[50px]
+                    sm:text-[50px] md:text-[80px]
+                    lg:text-9xl xl:text-9xl
+                    text-center spantaran
+                `}
                   >
                     TransferhubNG
                   </p>
@@ -36,7 +40,7 @@ const Home = ({ children }: any): JSX.Element => {
               </div>
               <p
                 id="connecting"
-                className="text-white text-center plus-jakarta"
+                className="text-white text-center plus-jakarta px-12 sm:px-12 md:px-12 lg:px-0 xl:px-0"
               >
                 Connecting players and coaches to clubs and Agencies
               </p>
