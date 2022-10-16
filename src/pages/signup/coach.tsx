@@ -81,7 +81,7 @@ const Coach = () => {
 
       toast.success(res.data.message);
       setTimeout(() => {
-        window.location.href = "/coach/login";
+        window.location.href = "/login/coach";
       }, 2000);
     } catch (error) {
       setLoading(false);
