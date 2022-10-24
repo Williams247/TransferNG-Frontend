@@ -9,7 +9,7 @@ const Button = ({
 }: {
   label: string;
   loading?: boolean;
-  type?: any;
+  type?: "button" | "submit";
   customedClasses?: string;
   onClick?: (e: any) => void;
 }): JSX.Element => {

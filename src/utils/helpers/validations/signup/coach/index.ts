@@ -18,10 +18,10 @@ export const signUpAsCoachStepThree = yup.object().shape({
   currentCity: yup.string().required("Former city is required"),
   phoneNumber: yup.string().required("Phone number is required"),
   email: yup.string().required("Email is required"),
-  password: yup.string().required("Pin is required"),
+  password: yup.string().required("Password is required"),
   confirmPassword: yup
     .string()
-    .oneOf([yup.ref("password"), null], "Pins must match")
-    .required("Confirm pin is required"),
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required("Confirm password is required"),
   otherCertification: yup.string(),
 });

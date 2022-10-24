@@ -4,6 +4,7 @@ import Space from "../Space";
 import Hamburger from "../icons/Hambuger";
 import RegisterBtn from "../Buttons/RegisterBtn";
 import OutlineButton from "../Buttons/OutlineButton";
+import LoginBtn from "../Buttons/LoginBtn";
 import "./styles.scss";
 
 interface NavState {
@@ -61,9 +62,7 @@ class Navigation extends React.Component<{}, NavState> {
           </div>
           <div className="flex">
             <div>
-              <Link to="/login/coach">
-                <OutlineButton customedClasses="mr-4" label="Log in" />
-              </Link>
+              <LoginBtn customedClasses="mr-4" label="Log in" />
             </div>
             <div className="float-right">
               <RegisterBtn label="Register" />
@@ -110,9 +109,7 @@ class Navigation extends React.Component<{}, NavState> {
               <div id="pane-3">
                 <div className="flex float-right">
                   <div>
-                    <Link to="/login/coach">
-                      <OutlineButton customedClasses="mr-16" label="Log in" />
-                    </Link>
+                    <LoginBtn customedClasses="mr-4" label="Log in" />
                   </div>
                   <div className="float-right">
                     <RegisterBtn label="Register" />

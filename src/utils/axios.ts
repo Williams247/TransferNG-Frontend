@@ -17,7 +17,7 @@ const axiosConfiguration = (config: AxiosRequestConfig) => {
   if (token)
     config.headers = {
       ...(config.headers || {}),
-      Authorization: `Bearer ${token}`,
+      Authorization: token,
     };
   return config;
 };
@@ -34,7 +34,6 @@ axios.interceptors.response.use(
     }
 
     const res = error.response;
-
     if (res.status === 401 && token) {
       window.location.href = "/login";
       localStorage.clear();
@@ -42,7 +41,6 @@ axios.interceptors.response.use(
     }
 
     toast.error(error.response.data.error);
-
     return Promise.reject(error);
   }
 );

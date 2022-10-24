@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { PlayerFirstPhase } from "../../utils/constants/constant";
 import AuthLayout from "../../layouts/Auth";
 import LayoutCard from "../../components/Card/LayoutCard";
 import BackButton from "../../components/Buttons/BackButton";
 import PhaseOne from "./signup-as-player-components/PhaseOne";
 import PhaseTwo from "./signup-as-player-components/PhaseTwo";
 import PhaseThree from "./signup-as-player-components/PhaseThree";
+import axios from "../../utils/axios";
 import Step from "../../components/step";
 import "./styles.scss";
 
@@ -13,34 +15,32 @@ const Player = (): JSX.Element => {
   const [phase, setPhase] = useState<number>(1);
   const [isDone, setIsDone] = useState<boolean>(false);
   const [data, setData] = useState({
-    firstName: "",
-    surName: "",
-    dateOfBirth: "",
+    firstname: "",
+    surname: "",
+    dob: "",
     nationality: "",
+    videoLink: "",
+    languages: "",
     weight: "",
     height: "",
-    position: "",
-    language: "",
-    videoLink: "",
+    bestPosition: "",
     foot: "",
-    info: "",
-    city: "",
-    instagram: "",
+    currentCity: "",
     email: "",
     phoneNumber: "",
-    linkedin: "",
-    twitter: "",
+    linkedinProfileLink: "",
+    instagramProfileLink: "",
+    twitterProfileLink: "",
   });
 
   const navigate = useNavigate();
 
-  const handleNextStep = (event: any): void => {
-    event.preventDefault();
-    if (phase === 4) {
-      handleCompleteRegistration();
+  const handleNextStep = () => {
+    setPhase(phase + 1);
+    if (phase === 3 || phase > 3) {
+      setPhase(3);
       return;
     }
-    setPhase(phase + 1);
   };
 
   const handlePrevStep = (): void => {
@@ -49,7 +49,56 @@ const Player = (): JSX.Element => {
     setIsDone(false);
   };
 
-  const handleCompleteRegistration = (): void => setIsDone(true);
+  const handleSetData = (res: any) => {
+    setData(res);
+    console.log(data);
+  };
+
+  const handleSubmitPlayerData = async (lastData: any) => {
+    const {
+      firstname,
+      surname,
+      dob,
+      nationality,
+      languages,
+      weight,
+      height,
+      bestPosition,
+      foot,
+      currentCity,
+      email,
+      password,
+      confirmPassword,
+      phoneNumber,
+      linkedinProfileLink,
+      instagramProfileLink,
+      twitterProfileLink,
+    } = lastData;
+    try {
+      const res = await axios.post("/auth/footballer/register", {
+        firstname,
+        surname,
+        dob,
+        nationality,
+        languages,
+        weight,
+        height,
+        bestPosition,
+        foot,
+        currentCity,
+        email,
+        password,
+        confirmPassword,
+        phoneNumber,
+        linkedinProfileLink,
+        instagramProfileLink,
+        twitterProfileLink,
+      });
+      console.log("Footballer res");
+      console.log(res);
+    } catch (error) {}
+  };
+
   return (
     <div>
       <AuthLayout>
@@ -91,15 +140,14 @@ const Player = (): JSX.Element => {
                     {phase === 1 && (
                       <PhaseOne
                         handleNextStep={handleNextStep}
-                        data={data}
-                        setData={setData}
+                        handleSetData={handleSetData}
                       />
                     )}
                     {phase === 2 && (
                       <PhaseTwo
                         handleNextStep={handleNextStep}
+                        handleSetData={handleSetData}
                         data={data}
-                        setData={setData}
                       />
                     )}
                     {phase === 3 && (
@@ -107,6 +155,8 @@ const Player = (): JSX.Element => {
                         handleNextStep={handleNextStep}
                         data={data}
                         setData={setData}
+                        handleSetData={handleSetData}
+                        handleSubmitPlayerData={handleSubmitPlayerData}
                       />
                     )}
                   </div>

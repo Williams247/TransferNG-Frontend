@@ -1,6 +1,7 @@
 export interface ModalProp {
   isModalOpen: {
     value: boolean;
+    value2: boolean;
   };
 }
 
@@ -20,4 +21,35 @@ export interface CoachRegDataProps {
     password: string;
     confirmPassword: "";
   };
+}
+
+export interface PlayerFirstPhase {
+  firstname: string;
+  surname: string;
+  dob: string;
+  videoLink: string;
+  nationality: string;
+  languages: string;
+  height: string;
+  weight: string;
+  bestPosition: string;
+  foot: string;
+}
+
+export interface PlayerSecondPhase {
+  currentCity: string;
+  phoneNumber: string;
+  email: string;
+  linkedinProfileLink: string;
+  instagramProfileLink: string;
+  twitterProfileLink: string;
+}
+
+export interface PlayerThirdPhase {
+  currentCity: string;
+  previousCurrentClub: string;
+  clubJoined: string;
+  contractExpires: string;
+  password: string;
+  confirmPassword: string;
 }
