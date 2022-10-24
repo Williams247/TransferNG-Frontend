@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CoachRegDataProps } from "../../../utils/constants/constant";
+import { CoachRegDataProps } from "../../../utils/constants/types";
 
 const coachRegData: CoachRegDataProps = {
   coach: {

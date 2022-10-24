@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { ModalProp } from "../utils/constants/constant";
+import { ModalProp } from "../utils/constants/types";
 import Home from "../pages/home";
 import Shop from "../pages/shop";
 import Product from "../pages/shop/product";

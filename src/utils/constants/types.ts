@@ -19,7 +19,7 @@ export interface CoachRegDataProps {
     phoneNumber: string;
     email: string;
     password: string;
-    confirmPassword: "";
+    confirmPassword: string;
   };
 }
 

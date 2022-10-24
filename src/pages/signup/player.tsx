@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { PlayerFirstPhase } from "../../utils/constants/constant";
+import { PlayerFirstPhase } from "../../utils/constants/types";
 import AuthLayout from "../../layouts/Auth";
 import LayoutCard from "../../components/Card/LayoutCard";
 import BackButton from "../../components/Buttons/BackButton";

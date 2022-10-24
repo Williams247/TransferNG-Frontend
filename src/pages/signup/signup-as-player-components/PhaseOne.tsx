@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Formik } from "formik";
 import { signUpAsPlayerStepOne } from "../../../utils/helpers/validations/signup/player";
-import { PlayerFirstPhase } from "../../../utils/constants/constant";
+import { PlayerFirstPhase } from "../../../utils/constants/types";
 import Text from "../../../components/Input/Text";
 import Select from "../../../components/Input/Select";
 import Button from "../../../components/Buttons/Button";

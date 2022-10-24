@@ -1,19 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { handleOpenModal } from "../redux/modal";
 import Navigation from "../components/Navigation";
 import Button from "../components/Buttons/Button";
 import Footer from "../components/Footer";
+import SideBar from "../components/Navigation/SideBar";
 import "./styles.scss";
 
 const Home = ({ children }: { children: JSX.Element }): JSX.Element => {
+  const [open, setOpen] = useState(false);
   useEffect((): void => {
     window.scrollTo(0, 0);
   }, []);
   const dispatch = useDispatch();
+  const handleOpenClose = () => setOpen(!open);
   return (
     <div>
-      <Navigation />
+      <Navigation handleOpenSideMenu={handleOpenClose} />
       <div id="home-layout">
         <div id="home-layout-overlay" className="pt-7">
           <div>
@@ -85,6 +88,7 @@ const Home = ({ children }: { children: JSX.Element }): JSX.Element => {
       <div>
         <Footer />
       </div>
+      <SideBar open={open} handleOpenSideMenu={handleOpenClose} />
     </div>
   );
 };
