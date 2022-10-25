@@ -36,7 +36,7 @@ const PhaseOne = ({
   const [stageOneProps] = useState({
     firstname: "",
     surname: "",
-    dob: "",
+    dob: "2005-01-01",
     videoLink: "",
     nationality: "",
     languages: "",

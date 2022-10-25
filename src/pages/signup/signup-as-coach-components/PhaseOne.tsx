@@ -40,7 +40,7 @@ const PhaseOne = ({
 }): JSX.Element => {
   const [stageOneProps] = useState({
     firstname: "",
-    dob: "",
+    dob: "1997-01-01",
     nationality: "",
     surname: "",
     videoLink: "",

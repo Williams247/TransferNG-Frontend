@@ -4,6 +4,7 @@ interface Props {
   placeholder: string;
   type: string;
   value: string | number;
+  defaultValue?: string | number;
   name?: string;
   onChange: (event: any) => void;
 }
@@ -13,6 +14,7 @@ const Text = ({
   type,
   value,
   name,
+  defaultValue,
   onChange,
 }: Props): JSX.Element => {
   return (
