@@ -39,7 +39,7 @@ const PhaseOne = ({
     dob: "2005-01-01",
     videoLink: "",
     nationality: "",
-    languages: "",
+    language: "",
     height: "",
     weight: "",
     bestPosition: "",
@@ -170,15 +170,13 @@ const PhaseOne = ({
                     <p className="reg-label mb-2">Language</p>
                     <Select
                       defaultList="Language"
-                      value={values.languages}
+                      value={values.language}
                       options={selectOption2}
                       onChange={handleChange}
-                      name="languages"
+                      name="language"
                     />
                     <p className="text-[red] mt-3 text-sm">
-                      {errors.languages &&
-                        touched.languages &&
-                        errors.languages}
+                      {errors.language && touched.language && errors.language}
                     </p>
                   </div>
                   <div className="w-full mt-8">

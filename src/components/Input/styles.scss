@@ -13,8 +13,6 @@
 }
 
 .uploader {
-  background: #e9f1f8;
-  border: 1px dashed #0757a0;
   border-radius: 5px;
 
   input[type="file"] {
@@ -60,4 +58,14 @@
       outline: none;
     }
   }
+}
+
+.upload-basic {
+  border: 1px dashed #0757a0;
+  background: #e9f1f8;
+}
+
+.uploaded {
+  border: 1px dashed #40d140;
+  background: #cde6cd;
 }

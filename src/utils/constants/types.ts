@@ -29,7 +29,7 @@ export interface PlayerFirstPhase {
   dob: string;
   videoLink: string;
   nationality: string;
-  languages: string;
+  language: string;
   height: string;
   weight: string;
   bestPosition: string;

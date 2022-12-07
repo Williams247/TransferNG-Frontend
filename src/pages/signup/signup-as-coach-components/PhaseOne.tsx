@@ -28,7 +28,7 @@ interface PhaseOneProps {
   nationality: string;
   surname: string;
   videoLink: string;
-  languages: string;
+  language: string;
 }
 
 const PhaseOne = ({
@@ -44,7 +44,7 @@ const PhaseOne = ({
     nationality: "",
     surname: "",
     videoLink: "",
-    languages: "",
+    language: "",
   });
 
   const handleSubmitDataOne = (values: PhaseOneProps) => {
@@ -61,16 +61,7 @@ const PhaseOne = ({
         initialValues={stageOneProps}
         onSubmit={handleSubmitDataOne}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleSubmit,
-          isValid,
-          setFieldValue,
-          resetForm,
-        }) => (
+        {({ values, errors, touched, handleChange, handleSubmit }) => (
           <div className="mt-16">
             <form onSubmit={handleSubmit}>
               <div className="flex-layout">
@@ -153,15 +144,13 @@ const PhaseOne = ({
                     <p className="reg-label mb-2">Language</p>
                     <Select
                       defaultList="Language"
-                      name="languages"
-                      value={values.languages}
+                      name="language"
+                      value={values.language}
                       onChange={handleChange}
                       options={selectOption2}
                     />
                     <p className="text-[red] mt-3 text-sm">
-                      {errors.languages &&
-                        touched.languages &&
-                        errors.languages}
+                      {errors.language && touched.language && errors.language}
                     </p>
                   </div>
                 </div>

@@ -1,22 +1,31 @@
 import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { handleOpenModal } from "../redux/modal";
 import Navigation from "../components/Navigation";
 import Button from "../components/Buttons/Button";
 import Footer from "../components/Footer";
 import SideBar from "../components/Navigation/SideBar";
+import SignUpAsModal from "../components/Modal/SignUpAs";
+import LoginAsModal from "../components/Modal/LoginAs";
 import "./styles.scss";
 
 const Home = ({ children }: { children: JSX.Element }): JSX.Element => {
   const [open, setOpen] = useState(false);
+  const [openCloseRegisterAs, setOpenCloseRegisterAs] = useState(false);
+  const [openCloseLoginAs, setOpenCloseLoginAs] = useState(false);
   useEffect((): void => {
     window.scrollTo(0, 0);
   }, []);
-  const dispatch = useDispatch();
   const handleOpenClose = () => setOpen(!open);
+  const handleOpenCloseRegisterAs = () =>
+    setOpenCloseRegisterAs(!openCloseRegisterAs);
+  const handleOpenCloseLoginModal = () =>
+    setOpenCloseLoginAs(!openCloseLoginAs);
   return (
     <div>
-      <Navigation handleOpenSideMenu={handleOpenClose} />
+      <Navigation
+        handleOpenSideMenu={handleOpenClose}
+        handleOpenCloseRegisterAs={handleOpenCloseRegisterAs}
+        handleOpenCloseLoginAs={handleOpenCloseLoginModal}
+      />
       <div id="home-layout">
         <div id="home-layout-overlay" className="pt-7">
           <div>
@@ -52,7 +61,7 @@ const Home = ({ children }: { children: JSX.Element }): JSX.Element => {
                   <Button
                     label="Get discovered"
                     customedClasses="px-14 py-7 mt-10 text-xl"
-                    onClick={() => dispatch(handleOpenModal())}
+                    onClick={handleOpenCloseRegisterAs}
                   />
                   <div className="flex justify-center mt-20">
                     <button id="down-btn" className="py-10 px-5">
@@ -89,6 +98,14 @@ const Home = ({ children }: { children: JSX.Element }): JSX.Element => {
         <Footer />
       </div>
       <SideBar open={open} handleOpenSideMenu={handleOpenClose} />
+      <SignUpAsModal
+        isOpen={openCloseRegisterAs}
+        handleOpenCloseRegisterAs={handleOpenCloseRegisterAs}
+      />
+      <LoginAsModal
+        isOpen={openCloseLoginAs}
+        handleOpenCloseLoginModal={handleOpenCloseLoginModal}
+      />
     </div>
   );
 };

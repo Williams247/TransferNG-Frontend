@@ -38,7 +38,6 @@ const PhaseThree = ({
       password: values.password,
       confirmPassword: values.confirmPassword,
     });
-    console.log(coachData);
   };
   return (
     <div>
@@ -49,16 +48,7 @@ const PhaseThree = ({
         initialValues={phaseThreeData}
         onSubmit={handleSubmitDataThree}
       >
-        {({
-          values,
-          errors,
-          touched,
-          handleChange,
-          handleSubmit,
-          isValid,
-          setFieldValue,
-          resetForm,
-        }) => (
+        {({ values, errors, touched, handleChange, handleSubmit }) => (
           <form onSubmit={handleSubmit}>
             <div className="w-full mt-5">
               <p className="reg-label mb-2">Current City</p>

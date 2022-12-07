@@ -1,25 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { handleCloseModal } from "../../redux/modal";
 import LayoutCard from "../Card/LayoutCard";
 import CloseButton from "../Buttons/CloseButton";
 import "./styles.scss";
 
 interface Props {
   isOpen: boolean;
+  handleOpenCloseRegisterAs: () => void;
 }
 
-const SignUpAs = ({ isOpen }: Props): JSX.Element => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const handleNavigateSignUpAsPlayer = (): void => {
-    dispatch(handleCloseModal());
-    navigate("sign-up/player");
-  };
-  const handleNavigateSignUpAsCoach = (): void => {
-    dispatch(handleCloseModal());
-    navigate("sign-up/coach");
-  };
+const SignUpAs = ({
+  isOpen,
+  handleOpenCloseRegisterAs,
+}: Props): JSX.Element => {
+  const history = useNavigate();
   return (
     <div>
       {isOpen && (
@@ -32,7 +25,7 @@ const SignUpAs = ({ isOpen }: Props): JSX.Element => {
                 <div className="px-5">
                   <div>
                     <div
-                      onClick={() => dispatch(handleCloseModal())}
+                      onClick={handleOpenCloseRegisterAs}
                       className="float-right"
                     >
                       <CloseButton />
@@ -53,7 +46,7 @@ const SignUpAs = ({ isOpen }: Props): JSX.Element => {
                   >
                     <div
                       className="w-full sm:w-full md:w-full lg:w-[48%] xl:w-[48%]"
-                      onClick={handleNavigateSignUpAsPlayer}
+                      onClick={() => history("/sign-up/player")}
                     >
                       <div className="select-reg-type flex justify-center py-16 cursor-pointer">
                         <div>
@@ -75,7 +68,7 @@ const SignUpAs = ({ isOpen }: Props): JSX.Element => {
                         lg:w-[48%] xl:w-[48%] mt-10 sm:mt-10
                         md:mt-10 lg:mt-0 xl:mt-0
                       `}
-                      onClick={handleNavigateSignUpAsCoach}
+                      onClick={() => history("sign-up/coach")}
                     >
                       <div
                         className={`select-reg-type flex justify-center py-16 cursor-pointer`}

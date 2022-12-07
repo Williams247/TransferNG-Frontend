@@ -1,86 +1,79 @@
-import { useRef } from "react";
+import { useState } from "react";
+import { FormSubmit } from "../../../utils/interface";
 import Uploader from "../../../components/Input/Uploader";
 import Button from "../../../components/Buttons/Button";
 import "../styles.scss";
 
 const PhaseFour = ({
-  handleSetFileOne,
-  handleSetFileTwo,
-  handleSetFileThree,
   handleSubmitCoachData,
   loading,
 }: {
-  handleSetFileOne: (event: void) => void;
-  handleSetFileTwo: (event: void) => void;
-  handleSetFileThree: (event: void) => void;
-  handleSubmitCoachData: (event: void) => void;
+  handleSubmitCoachData: (val: FormSubmit) => void;
   loading: boolean;
 }): JSX.Element => {
-  const fileOneRef = useRef<any>(null);
-  const fileTwoRef = useRef<any>(null);
-  const fileThreeRef = useRef<any>(null);
-
-  const handleGetFileOne = (event: any) => {
-    const file = event.target.files[0];
-    handleSetFileOne(file);
-    fileOneRef.current.src = URL.createObjectURL(file);
-  };
-  const handleGetFileTwo = (event: any) => {
-    const file = event.target.files[0];
-    handleSetFileTwo(file);
-    fileTwoRef.current.src = URL.createObjectURL(file);
-  };
-  const handleGetFileThree = (event: any) => {
-    const file = event.target.files[0];
-    handleSetFileThree(file);
-    fileThreeRef.current.src = URL.createObjectURL(file);
-  };
+  const [phaseFourData, setPhaseFourData] = useState({
+    licenses: {
+      url: "",
+      publicId: "",
+    },
+    diploma: {
+      url: "",
+      publicId: "",
+    },
+    otherTraining: {
+      url: "",
+      publicId: "",
+    },
+  });
 
   return (
     <div>
       <p className="reg-label mb-2">Licenses/Certificates (Image)</p>
       <div className="mt-1">
-        <img ref={fileOneRef} alt="file-one" className="w-full mb-5" />
         <Uploader
-          type="file"
-          placeholder="Upload file"
           accept="image/jpeg"
-          onChange={handleGetFileOne}
+          urlCallBack={(url, publicId) =>
+            setPhaseFourData({
+              ...phaseFourData,
+              licenses: { url: url, publicId: publicId },
+            })
+          }
         />
       </div>
       <p className="reg-label mb-2 mt-8">Diploma Certificate (Image)</p>
       <div className="mt-1">
-        <img ref={fileTwoRef} alt="file-two" className="w-full mb-5" />
         <Uploader
-          type="file"
-          placeholder="Upload file"
           accept="image/jpeg"
-          onChange={handleGetFileTwo}
+          urlCallBack={(url, publicId) =>
+            setPhaseFourData({
+              ...phaseFourData,
+              diploma: { url: url, publicId: publicId },
+            })
+          }
         />
       </div>
       <p className="reg-label mb-2 mt-8">
         Other Trainings & Certifications (Image)
       </p>
       <div className="mt-1">
-        <img ref={fileThreeRef} alt="file-three" className="w-full mb-5" />
         <Uploader
-          type="file"
-          placeholder="Upload file"
           accept="image/jpeg"
-          onChange={handleGetFileThree}
+          urlCallBack={(url, publicId) =>
+            setPhaseFourData({
+              ...phaseFourData,
+              otherTraining: { url: url, publicId: publicId },
+            })
+          }
         />
       </div>
-
-      <p className="reg-label mb-2 mt-8">
-        Other Trainings & Certifications (Image)
-      </p>
+      <p className="reg-label mb-2 mt-8">Key Achievements</p>
       <textarea className="input w-full txt-area px-5 py-5" />
       <div className="flex justify-center py-10">
         <Button
-          onClick={handleSubmitCoachData}
           label="Complete Registration"
           customedClasses="py-5 px-20"
           loading={loading}
+          onClick={() => handleSubmitCoachData(phaseFourData)}
         />
       </div>
     </div>

@@ -5,7 +5,7 @@ import Text from "../../../components/Input/Text";
 import Button from "../../../components/Buttons/Button";
 
 interface PhaseTwoProps {
-  formerTeams: string;
+  formerTeam: string;
   currentTeam: string;
 }
 
@@ -18,11 +18,11 @@ const PhaseTwo = ({
   handleSetCoachData: (event: any) => void;
   coachData: any;
 }): JSX.Element => {
-  const [phaseTwoData] = useState({ formerTeams: "", currentTeam: "" });
+  const [phaseTwoData] = useState({ formerTeam: "", currentTeam: "" });
   const handleSubmitDataTwo = (values: PhaseTwoProps) => {
     handleSetCoachData({
       ...coachData,
-      formerTeams: values.formerTeams,
+      formerTeam: values.formerTeam,
       currentTeam: values.currentTeam,
     });
     handleNextStep();
@@ -52,15 +52,13 @@ const PhaseTwo = ({
               <p className="reg-label mb-2">Former Teams</p>
               <Text
                 type="text"
-                name="formerTeams"
+                name="formerTeam"
                 placeholder="former Teams"
-                value={values.formerTeams}
+                value={values.formerTeam}
                 onChange={handleChange}
               />
               <p className="text-[red] mt-3 text-sm">
-                {errors.formerTeams &&
-                  touched.formerTeams &&
-                  errors.formerTeams}
+                {errors.formerTeam && touched.formerTeam && errors.formerTeam}
               </p>
             </div>
             <div className="w-full mt-8">

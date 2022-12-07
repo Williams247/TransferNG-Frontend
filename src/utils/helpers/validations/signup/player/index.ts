@@ -6,7 +6,7 @@ export const signUpAsPlayerStepOne = yup.object().shape({
   dob: yup.string().required("Date of birth is required"),
   videoLink: yup.string().required("Video field is required"),
   nationality: yup.string().required("Nationality is required"),
-  languages: yup.string().required("Language is required"),
+  language: yup.string().required("Language is required"),
   height: yup.string().required("Height field is required"),
   weight: yup.string().required("Weight field is required"),
   bestPosition: yup.string().required("Best position field is required"),

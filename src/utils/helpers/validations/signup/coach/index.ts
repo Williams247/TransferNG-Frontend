@@ -6,11 +6,11 @@ export const signUpAsCoachStepOne = yup.object().shape({
   dob: yup.string().required("Date of birth is required"),
   videoLink: yup.string(),
   nationality: yup.string().required("Nationality is required"),
-  languages: yup.string().required("Language is required"),
+  language: yup.string().required("Language is required"),
 });
 
 export const signUpAsCoachStepTwo = yup.object().shape({
-  formerTeams: yup.string().required("Former team is required"),
+  formerTeam: yup.string().required("Former team is required"),
   currentTeam: yup.string().required("Current team is required"),
 });
 
@@ -24,4 +24,12 @@ export const signUpAsCoachStepThree = yup.object().shape({
     .oneOf([yup.ref("password"), null], "Passwords must match")
     .required("Confirm password is required"),
   otherCertification: yup.string(),
+});
+
+export const signUpAsCoachStepFour = yup.object().shape({
+  licenses: yup.string().required("Licenses certificate upload is required"),
+  diploma: yup.string().required("Diploma certificate upload is required"),
+  otherTraining: yup
+    .string()
+    .required("Other trainings certificate upload is required"),
 });

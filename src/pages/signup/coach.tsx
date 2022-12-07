@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthLayout from "../../layouts/Auth";
+import { FormSubmit } from "../../utils/interface";
 import LayoutCard from "../../components/Card/LayoutCard";
 import BackButton from "../../components/Buttons/BackButton";
 import PhaseOne from "./signup-as-coach-components/PhaseOne";
@@ -15,9 +16,6 @@ import "./styles.scss";
 const Coach = () => {
   const [phase, setPhase] = useState<number>(1);
   const [isDone, setIsDone] = useState<boolean>(false);
-  const [fileOne, setFileOne] = useState<any>(null);
-  const [fileTwo, setFileTwo] = useState<any>(null);
-  const [fileThree, setFileThree] = useState<any>(null);
   const [loading, setLoading] = useState<any>(null);
 
   const [coachData, setCoachData] = useState({
@@ -25,8 +23,8 @@ const Coach = () => {
     surname: "",
     dob: "",
     nationality: "",
-    languages: "",
-    formerTeams: "",
+    language: "",
+    formerTeam: "",
     currentTeam: "",
     currentCity: "",
     phoneNumber: "",
@@ -46,35 +44,17 @@ const Coach = () => {
     setIsDone(false);
   };
 
-  const handleSetFileOne = (file: any) => setFileOne(file);
-  const handleSetFileTwo = (file: any) => setFileTwo(file);
-  const handleSetFileThree = (file: any) => setFileThree(file);
   const handleSetCoachData = (res: any) => setCoachData(res);
 
-  const handleSubmitCoachData = async () => {
+  const handleSubmitCoachData = async (val: FormSubmit) => {
+    const { licenses, diploma, otherTraining } = val;
     setLoading(true);
     try {
-      const formData: FormData = new FormData();
-      formData.append("firstname", coachData.firstname);
-      formData.append("surname", coachData.surname);
-      formData.append("dob", coachData.dob);
-      formData.append("nationality", coachData.nationality);
-      formData.append("languages", coachData.languages);
-      formData.append("formerTeams", coachData.formerTeams);
-      formData.append("currentTeam", coachData.currentTeam);
-      formData.append("currentCity", coachData.currentCity);
-      formData.append("phoneNumber", coachData.phoneNumber);
-      formData.append("email", coachData.email);
-      formData.append("password", coachData.password);
-      formData.append("confirmPassword", coachData.confirmPassword);
-      formData.append("image", fileOne);
-      formData.append("image", fileTwo);
-      formData.append("image", fileThree);
-
-      const res: any = await axios({
-        method: "post",
-        url: "/auth/coach/register",
-        data: formData,
+      const res: any = await axios.post("/auth/coach/register", {
+        ...coachData,
+        licenses,
+        diploma,
+        otherTraining,
       });
 
       setLoading(false);
@@ -156,9 +136,6 @@ const Coach = () => {
                     )}
                     {phase === 4 && (
                       <PhaseFour
-                        handleSetFileOne={handleSetFileOne}
-                        handleSetFileTwo={handleSetFileTwo}
-                        handleSetFileThree={handleSetFileThree}
                         handleSubmitCoachData={handleSubmitCoachData}
                         loading={loading}
                       />

@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { ModalProp } from "../utils/constants/types";
 import Home from "../pages/home";
 import Shop from "../pages/shop";
@@ -7,15 +6,11 @@ import Product from "../pages/shop/product";
 import Coach from "../pages/coach";
 import CoachLogin from "../pages/login/coach";
 import PlayerLogin from "../pages/login/player";
-import SignUpAs from "../components/Modal/SignUpAs";
-import LoginAs from "../components/Modal/LoginAs";
 import SignUpAsCoach from "../pages/signup/coach";
 import SignUpAsPlayer from "../pages/signup/player";
 import Player from "../pages/player";
 
 const AppRouter = () => {
-  const state = useSelector((state: ModalProp) => state.isModalOpen.value);
-  const state2 = useSelector((state: ModalProp) => state.isModalOpen.value2);
   return (
     <>
       <BrowserRouter>
@@ -30,8 +25,6 @@ const AppRouter = () => {
           <Route path="/sign-up/player" element={<SignUpAsPlayer />} />
           <Route path="/profile/player" element={<Player />} />
         </Routes>
-        <SignUpAs isOpen={state} />
-        <LoginAs isOpen={state2} />
       </BrowserRouter>
     </>
   );

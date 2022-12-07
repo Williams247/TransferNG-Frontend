@@ -1,25 +1,15 @@
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { handleCloseModal2 } from "../../redux/modal";
 import LayoutCard from "../Card/LayoutCard";
 import CloseButton from "../Buttons/CloseButton";
 import "./styles.scss";
 
 interface Props {
   isOpen: boolean;
+  handleOpenCloseLoginModal: () => void;
 }
 
-const LoginAs = ({ isOpen }: Props): JSX.Element => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const handleNavigateSignUpAsPlayer = (): void => {
-    dispatch(handleCloseModal2());
-    navigate("/login/player");
-  };
-  const handleNavigateSignUpAsCoach = (): void => {
-    dispatch(handleCloseModal2());
-    navigate("/login/coach");
-  };
+const LoginAs = ({ isOpen, handleOpenCloseLoginModal }: Props): JSX.Element => {
+  const history = useNavigate();
   return (
     <div>
       {isOpen && (
@@ -32,7 +22,7 @@ const LoginAs = ({ isOpen }: Props): JSX.Element => {
                 <div className="px-5">
                   <div>
                     <div
-                      onClick={() => dispatch(handleCloseModal2())}
+                      onClick={handleOpenCloseLoginModal}
                       className="float-right"
                     >
                       <CloseButton />
@@ -52,7 +42,7 @@ const LoginAs = ({ isOpen }: Props): JSX.Element => {
                   >
                     <div
                       className="w-full sm:w-full md:w-full lg:w-[48%] xl:w-[48%]"
-                      onClick={handleNavigateSignUpAsPlayer}
+                      onClick={() => history("/login/player")}
                     >
                       <div className="select-reg-type flex justify-center py-16 cursor-pointer">
                         <div>
@@ -74,7 +64,7 @@ const LoginAs = ({ isOpen }: Props): JSX.Element => {
                         lg:w-[48%] xl:w-[48%] mt-10 sm:mt-10
                         md:mt-10 lg:mt-0 xl:mt-0
                       `}
-                      onClick={handleNavigateSignUpAsCoach}
+                      onClick={() => history("/login/coach")}
                     >
                       <div
                         className={`select-reg-type flex justify-center py-16 cursor-pointer`}

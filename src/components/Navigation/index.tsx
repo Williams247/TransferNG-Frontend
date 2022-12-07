@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Space from "../Space";
 import Hamburger from "../icons/Hambuger";
-import RegisterBtn from "../Buttons/RegisterBtn";
 import OutlineButton from "../Buttons/OutlineButton";
-import LoginBtn from "../Buttons/LoginBtn";
+import Button from "../Buttons/Button";
 import "./styles.scss";
 
 interface Props {
   handleOpenSideMenu?: () => void;
+  handleOpenCloseRegisterAs?: () => void;
+  handleOpenCloseLoginAs?: () => void;
 }
 
-const Navigation = ({ handleOpenSideMenu }: Props) => {
+const Navigation = ({
+  handleOpenSideMenu,
+  handleOpenCloseRegisterAs,
+  handleOpenCloseLoginAs,
+}: Props) => {
   const [scrolledPass, setScrollPass] = useState(false);
   const handleScroll = (): void => {
     const scrollBy: number = 70;
@@ -56,10 +61,14 @@ const Navigation = ({ handleOpenSideMenu }: Props) => {
         </div>
         <div className="flex">
           <div>
-            <LoginBtn customedClasses="mr-4" label="Log in" />
+            <OutlineButton
+              customedClasses="mr-4"
+              label="Log in"
+              onClick={handleOpenCloseLoginAs}
+            />
           </div>
           <div className="float-right">
-            <RegisterBtn label="Register" />
+            <Button label="Register" onClick={handleOpenCloseRegisterAs} />
           </div>
         </div>
       </div>
@@ -72,7 +81,11 @@ const Navigation = ({ handleOpenSideMenu }: Props) => {
         }
       >
         <Space>
-          <div className="hidden sm:hidden md:flex lg:flex xl:flex sm:flex-col md:flex-col lg:flex-row xl:flex-row">
+          <div
+            className={`
+            hidden sm:hidden md:flex lg:flex xl:flex sm:flex-col md:flex-col lg:flex-row xl:flex-row
+          `}
+          >
             <div id="pane-1" className="flex">
               <div className="pr-10">
                 <button className="mt-2" onClick={handleOpenSideMenu}>
@@ -103,10 +116,17 @@ const Navigation = ({ handleOpenSideMenu }: Props) => {
             <div id="pane-3">
               <div className="flex float-right">
                 <div>
-                  <LoginBtn customedClasses="mr-4" label="Log in" />
+                  <OutlineButton
+                    onClick={handleOpenCloseLoginAs}
+                    customedClasses="mr-4"
+                    label="Log in"
+                  />
                 </div>
                 <div className="float-right">
-                  <RegisterBtn label="Register" />
+                  <Button
+                    label="Register"
+                    onClick={handleOpenCloseRegisterAs}
+                  />
                 </div>
               </div>
             </div>

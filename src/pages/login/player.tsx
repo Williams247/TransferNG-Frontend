@@ -19,7 +19,7 @@ const Login = (): JSX.Element => {
   const handleLoginCoach = async (values: {
     email: string;
     password: string;
-  }): Promise<void> => {
+  }) => {
     setLoading(true);
     try {
       const res = await axios.post("/auth/footballer/login", { ...values });
