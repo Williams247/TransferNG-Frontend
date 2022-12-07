@@ -24,7 +24,10 @@ const ViewModal = ({
           bg-[rgba(0,0,0,0.6)] w-full z-10 fixed flex
           justify-center bottom-0 left-0 h-screen`}
         >
-          <div className={`bg-white rounded-md pt-1 mt-7 w-[40%] h-[400px]`}>
+          <div
+            className={`bg-white rounded-md pt-1 mt-7 w-[80%]
+            sm:w-[80%] md:w-[40%] lg:w-[40%] xl:w-[40%] h-[400px]`}
+          >
             <p className="text-[16px] px-3 py-2">Preview</p>
             <div className="flex pb-3 px-3">
               <button
