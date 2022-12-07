@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { SideMenuList } from "../../../utils/constants/common";
 import "./styles.scss";
 
@@ -7,6 +8,7 @@ interface Props {
 }
 
 const SideBar = ({ handleOpenSideMenu, open }: Props) => {
+  const history = useNavigate();
   return (
     <div>
       {open && (
@@ -24,7 +26,11 @@ const SideBar = ({ handleOpenSideMenu, open }: Props) => {
               <ul className="mt-14">
                 {SideMenuList.map((data, index) => {
                   return (
-                    <li key={index} className="text-white mt-12 text-[20px]">
+                    <li
+                      key={index}
+                      className="text-white mt-12 text-[20px] cursor-pointer"
+                      onMouseDown={() => history(data.path)}
+                    >
                       {data.label}
                     </li>
                   );

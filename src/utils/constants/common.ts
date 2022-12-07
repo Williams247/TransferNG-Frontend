@@ -6,7 +6,7 @@ interface SideMenuProps {
 export const SideMenuList: SideMenuProps[] = [
   {
     label: "News",
-    path: "",
+    path: "/news",
   },
   {
     label: "Naija in Europe",
@@ -14,7 +14,7 @@ export const SideMenuList: SideMenuProps[] = [
   },
   {
     label: "Shop",
-    path: "",
+    path: "/shop",
   },
   {
     label: "Log In",
