@@ -31,7 +31,7 @@ const ShopPage = (): JSX.Element => {
                     >
                       <DisplayCard
                         imageUrl={data.imageUrl}
-                        productName={data.productName}
+                        title={data.productName}
                         amount={`₦${data.amount}`}
                         content={data.content}
                         star={data.star}

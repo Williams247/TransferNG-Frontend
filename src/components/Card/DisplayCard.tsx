@@ -6,19 +6,21 @@ import "./styles.scss";
 
 interface DisplayProps {
   imageUrl?: string;
-  productName: string;
-  amount: string;
-  star: number;
-  content: string;
-  cardType: string;
+  title?: string;
+  amount?: string;
+  star?: number;
+  content?: string;
+  noButton?: boolean;
+  cardType?: string;
 }
 
 const DisplayCard = ({
   imageUrl,
-  productName,
+  title,
   amount,
   star,
   content,
+  noButton,
   cardType,
 }: DisplayProps): JSX.Element => {
   const navigate = useNavigate();
@@ -26,37 +28,50 @@ const DisplayCard = ({
     <div>
       {cardType === "first-card" && (
         <div className="display-card w-full">
-          <img
-            className="w-full display-card-image"
-            alt={productName}
-            src={imageUrl}
-          />
+          {imageUrl && (
+            <img
+              className="w-full display-card-image"
+              alt={title}
+              src={imageUrl}
+            />
+          )}
+
           <div className="px-5 py-5">
             <div className="flex justify-between">
               <div>
-                <p className="product-name plus-jakarta">{productName}</p>
-                <div className="flex justify-between mt-2">
-                  {Array.from(Array(star), (x, y) => (
-                    <StarFull key={y} />
-                  ))}
-                  {Array.from(Array(5 - star), (x, y) => (
-                    <StarEmpty key={y} />
-                  ))}
+                {title && <p className="product-name plus-jakarta">{title}</p>}
+
+                {star && (
+                  <div className="flex justify-between mt-2">
+                    {Array.from(Array(star), (x, y) => (
+                      <StarFull key={y} />
+                    ))}
+                    {Array.from(Array(5 - star), (x, y) => (
+                      <StarEmpty key={y} />
+                    ))}
+                  </div>
+                )}
+              </div>
+              {amount && (
+                <div>
+                  <p className="amount plus-jakarta mt-0.5">{amount}</p>
                 </div>
-              </div>
-              <div>
-                <p className="amount plus-jakarta mt-0.5">{amount}</p>
-              </div>
+              )}
             </div>
-            <div className="mt-5">
-              <p className="text-white plus-jarkata">{content}</p>
-            </div>
+            {content && (
+              <div className="mt-3">
+                <p className="text-white plus-jarkata text-[15px]">{content}</p>
+              </div>
+            )}
+
             <div className="mt-5 w-full">
-              <Button
-                label="Add to Cart"
-                customedClasses="w-full py-4 mb-4"
-                onClick={() => navigate("/shop/product")}
-              />
+              {!noButton && (
+                <Button
+                  label="Add to Cart"
+                  customedClasses="w-full py-4 mb-4 text-[13px]"
+                  onClick={() => navigate("/shop/product")}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -66,30 +81,43 @@ const DisplayCard = ({
           <div className="px-10 py-5">
             <div className="flex justify-between">
               <div>
-                <p className="product-name product-name-2 plus-jakarta">
-                  {productName}
-                </p>
-                <div className="flex justify-between mt-2">
-                  {Array.from(Array(star), (x, y) => (
-                    <StarFull key={y} />
-                  ))}
-                  {Array.from(Array(5 - star), (x, y) => (
-                    <StarEmpty key={y} />
-                  ))}
-                </div>
+                {title && (
+                  <p className="product-name product-name-2 plus-jakarta">
+                    {title}
+                  </p>
+                )}
+                {star && (
+                  <div className="flex justify-between mt-2">
+                    {Array.from(Array(star), (x, y) => (
+                      <StarFull key={y} />
+                    ))}
+                    {Array.from(Array(5 - star), (x, y) => (
+                      <StarEmpty key={y} />
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
-            <div>
-              <p className="amount amount-2 plus-jakarta mt-3">{amount}</p>
-            </div>
-            <div className="mt-5">
-              <p className="text-white text-content plus-jarkata">{content}</p>
-            </div>
+            {amount && (
+              <div>
+                <p className="amount amount-2 plus-jakarta mt-3">{amount}</p>
+              </div>
+            )}
+            {content && (
+              <div className="mt-3">
+                <p className="text-white text-content plus-jarkata">
+                  {content}
+                </p>
+              </div>
+            )}
+
             <div className="mt-5 w-full">
-              <Button
-                label="Add to Cart"
-                customedClasses="w-full py-4 mb-3 mt-10"
-              />
+              {!noButton && (
+                <Button
+                  label="Add to Cart"
+                  customedClasses="w-full py-4 mb-3 mt-10"
+                />
+              )}
             </div>
           </div>
         </div>

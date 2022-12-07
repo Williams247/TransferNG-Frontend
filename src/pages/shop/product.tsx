@@ -32,8 +32,8 @@ const Product = (): JSX.Element => {
             `}
             >
               <DisplayCard
-                productName="Product name"
-                amount={`₦${25000}`}
+                title="Product name"
+                amount={`₦25,000`}
                 star={4}
                 cardType="last-card"
                 content="Nibh quisque suscipit fermentum netus nulla cras porttitor euismod nulla. Orci, dictumst nec aliquet id ullamcorper venenatis. Fermentum sulla craspor ttitore  ismod nulla."
