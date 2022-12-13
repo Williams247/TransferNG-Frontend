@@ -68,7 +68,7 @@ const SignUpAs = ({
                         lg:w-[48%] xl:w-[48%] mt-10 sm:mt-10
                         md:mt-10 lg:mt-0 xl:mt-0
                       `}
-                      onClick={() => history("sign-up/coach")}
+                      onClick={() => history("/sign-up/coach")}
                     >
                       <div
                         className={`select-reg-type flex justify-center py-16 cursor-pointer`}
